@@ -1,0 +1,684 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Mohamed ELABD | CV Maintenance Industrielle - Version PDF avec QR Code</title>
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Bibliothèque QRCode.js (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #dce9f2 0%, #c2d6e4 100%);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            padding: 40px 24px;
+            color: #11212e;
+        }
+
+        .cv-card {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 36px;
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .cv-grid {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        /* Sidebar gauche - version écran */
+        .sidebar-left {
+            flex: 1;
+            background: #1e2f3c;
+            color: #eef3fc;
+            padding: 1.6rem 1.5rem;
+        }
+
+        .main-right {
+            flex: 2;
+            background: white;
+            padding: 1.6rem 2rem;
+        }
+
+        .photo-frame {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .photo-frame img {
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #ffb347;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+            width: 140px;
+            height: 140px;
+            background: #eef3fc;
+        }
+
+        .sidebar-title {
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin: 22px 0 12px 0;
+            border-left: 4px solid #ffb347;
+            padding-left: 12px;
+            text-transform: uppercase;
+            color: #ffdcb0;
+        }
+        .first-sidebar-title {
+            margin-top: 0px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 0.8rem;
+            word-break: break-word;
+        }
+        .contact-item i {
+            width: 26px;
+            font-size: 1rem;
+            color: #ffb347;
+        }
+        .contact-item a {
+            color: #f0f9ff;
+            text-decoration: none;
+            border-bottom: 1px dotted #6b8da8;
+        }
+
+        .skill-badge {
+            display: inline-block;
+            background: #2c485b;
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            margin: 0 5px 8px 0;
+            color: #f5f9ff;
+        }
+        .lang-line {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dashed #415f71;
+            padding: 6px 0;
+            font-size: 0.8rem;
+        }
+        .interest-tag {
+            background: #2c485b;
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            margin: 0 6px 6px 0;
+        }
+
+        .name-head {
+            margin-bottom: 12px;
+            border-bottom: 3px solid #ffb347;
+            display: inline-block;
+            padding-bottom: 4px;
+        }
+        .name-head h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #0f2b36;
+        }
+        .badge-title {
+            background: #ffb34720;
+            display: inline-block;
+            padding: 4px 18px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: #c25b00;
+            margin: 8px 0 14px 0;
+        }
+        .profil-text {
+            background: #f9fafc;
+            padding: 12px 16px;
+            border-radius: 24px;
+            margin: 12px 0 18px 0;
+            font-size: 0.8rem;
+            line-height: 1.4;
+            color: #2c4253;
+            border-left: 6px solid #ffb347;
+        }
+
+        .section-main {
+            margin: 20px 0 18px 0;
+        }
+        .section-main-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #1e3f4f;
+            margin-bottom: 12px;
+        }
+        .section-main-header i {
+            font-size: 1.3rem;
+            color: #ffb347;
+        }
+
+        .exp-item {
+            margin-bottom: 18px;
+            padding-left: 10px;
+            border-left: 2px solid #e2e8f0;
+        }
+        .exp-title-line {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 4px;
+        }
+        .exp-title {
+            font-weight: 800;
+            font-size: 0.9rem;
+            color: #0b3b4b;
+        }
+        .exp-date {
+            font-size: 0.65rem;
+            background: #eef3f9;
+            padding: 2px 10px;
+            border-radius: 40px;
+            color: #2c627c;
+            font-weight: 600;
+        }
+        .exp-sub {
+            font-weight: 600;
+            color: #ff8c42;
+            font-size: 0.75rem;
+            margin: 3px 0 6px 0;
+        }
+        .task-list {
+            list-style: none;
+        }
+        .task-list li {
+            font-size: 0.74rem;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+        .task-list li i {
+            color: #ffb347;
+            font-size: 0.6rem;
+            width: 14px;
+        }
+        .stage-block {
+            background: #fafcff;
+            padding: 8px 12px;
+            border-radius: 16px;
+            margin-bottom: 12px;
+            border: 1px solid #eef2f8;
+            font-size: 0.75rem;
+        }
+        .edu-item {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            background: #fefaf5;
+            padding: 8px 16px;
+            border-radius: 16px;
+            margin-bottom: 10px;
+            font-size: 0.8rem;
+        }
+        .edu-year {
+            font-weight: 800;
+            color: #ff8c42;
+            min-width: 90px;
+        }
+        hr {
+            margin: 12px 0;
+            border: 0;
+            height: 1px;
+            background: linear-gradient(90deg, #ffb347, #e0e8f0);
+        }
+        footer {
+            background: #fef5ea;
+            text-align: center;
+            padding: 8px;
+            font-size: 0.65rem;
+            color: #527a92;
+            border-top: 1px solid #ffe1bd;
+        }
+
+        /* QR Code Container - visible uniquement dans l'impression PDF */
+        .qr-print-container {
+            display: none;
+        }
+
+        /* Bouton PDF */
+        .print-controls {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 1000;
+        }
+        .btn-pdf {
+            background: #1e2f3c;
+            border: none;
+            color: white;
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+        .btn-pdf i {
+            color: #ffb347;
+            font-size: 1.2rem;
+        }
+        .btn-pdf:hover {
+            background: #2c485b;
+            transform: scale(1.02);
+        }
+
+        @media (max-width: 780px) {
+            body { padding: 20px 12px; }
+            .sidebar-left, .main-right { flex: auto; width: 100%; }
+            .sidebar-left { order: 1; }
+            .main-right { order: 2; }
+            .print-controls { bottom: 16px; right: 16px; }
+            .btn-pdf { padding: 8px 16px; font-size: 0.75rem; }
+        }
+
+        /* ============================================= */
+        /* STYLES POUR L'IMPRESSION PDF - COLONNE GAUCHE 1/3 - DROITE 2/3 */
+        /* ============================================= */
+        @page {
+            size: A4 portrait;
+            margin: 0.15in;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+                margin: 0;
+            }
+            .print-controls {
+                display: none;
+            }
+            .cv-card {
+                max-width: 100%;
+                margin: 0;
+                border-radius: 0;
+                box-shadow: none;
+                position: relative;
+            }
+            .cv-grid {
+                display: flex;
+                flex-wrap: nowrap;
+                width: 100%;
+                break-inside: avoid;
+            }
+            .sidebar-left {
+                flex: 0 0 33% !important;
+                width: 33% !important;
+                background: #1e2f3c;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                break-inside: avoid;
+                padding: 0.4rem 0.6rem;
+            }
+            .main-right {
+                flex: 0 0 67% !important;
+                width: 67% !important;
+                break-inside: avoid;
+                padding: 0.4rem 0.9rem;
+            }
+            /* Affichage du QR code dans le pied de page ou en bas à droite */
+            .qr-print-container {
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                margin-top: 6px;
+                margin-bottom: 4px;
+                gap: 12px;
+                border-top: 1px solid #ffb34760;
+                padding-top: 6px;
+            }
+            .qr-box {
+                background: white;
+                padding: 6px;
+                border-radius: 12px;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+                display: inline-block;
+            }
+            .qr-box canvas, .qr-box img {
+                width: 65px !important;
+                height: 65px !important;
+                display: block;
+            }
+            .qr-text {
+                font-size: 0.55rem;
+                color: #1e3f4f;
+                font-weight: 500;
+                text-align: right;
+                max-width: 160px;
+            }
+            .qr-text i {
+                color: #ffb347;
+                margin-right: 4px;
+            }
+            /* Taille compacte pour tout le reste */
+            .name-head h1 { font-size: 1.35rem; }
+            .badge-title { font-size: 0.62rem; margin: 3px 0 6px; padding: 2px 10px; }
+            .profil-text { font-size: 0.65rem; padding: 5px 8px; margin: 4px 0 6px; line-height: 1.25; }
+            .section-main { margin: 5px 0 5px; }
+            .section-main-header { font-size: 0.85rem; margin-bottom: 4px; }
+            .section-main-header i { font-size: 0.9rem; }
+            .exp-item { margin-bottom: 5px; padding-left: 5px; }
+            .exp-title { font-size: 0.68rem; }
+            .exp-date { font-size: 0.48rem; padding: 1px 5px; }
+            .exp-sub { font-size: 0.58rem; margin: 2px 0 2px; }
+            .task-list li { font-size: 0.56rem; margin-bottom: 1px; gap: 4px; }
+            .task-list li i { font-size: 0.5rem; }
+            .stage-block { padding: 3px 7px; margin-bottom: 4px; font-size: 0.57rem; }
+            .edu-item { padding: 3px 8px; margin-bottom: 4px; font-size: 0.6rem; gap: 5px; }
+            .edu-year { min-width: 60px; font-size: 0.6rem; }
+            .sidebar-title { font-size: 0.72rem; margin: 8px 0 4px 0; padding-left: 7px; }
+            .contact-item { font-size: 0.57rem; margin-bottom: 3px; gap: 5px; }
+            .contact-item i { width: 18px; font-size: 0.65rem; }
+            .skill-badge { font-size: 0.52rem; padding: 1px 5px; margin: 0 2px 3px 0; }
+            .lang-line { font-size: 0.57rem; padding: 2px 0; }
+            .interest-tag { font-size: 0.52rem; padding: 2px 6px; margin: 0 3px 4px 0; }
+            .photo-frame img { width: 150px; height: 150px; border-width: 2px; }
+            .photo-frame { margin-bottom: 6px; }
+            footer { font-size: 0.48rem; padding: 2px; }
+            hr { margin: 3px 0; }
+            .qr-print-container {
+                display: flex !important;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="cv-card" id="cvContainer">
+    <div class="cv-grid">
+        <!-- SIDEBAR GAUCHE (33% en print) -->
+        <div class="sidebar-left">
+            <div class="photo-frame">
+                <img src='moh.PNG' alt="photo profil" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22140%22 height=%22140%22 viewBox=%220 0 100 100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%23344e5c%22/%3E%3Ctext x=%2250%22 y=%2265%22 font-size=%2240%22 text-anchor=%22middle%22 fill=%22%23ffb347%22%3E📷%3C/text%3E%3C/svg%3E';">
+            </div>
+            <div class="sidebar-title first-sidebar-title">CONTACT</div>
+            <div class="contact-item"><i class="fas fa-mobile-alt"></i> <span>+212 (0) 614 54 67 50</span></div>
+            <div class="contact-item"><i class="fas fa-envelope"></i> <a href="mailto:moh2982004@gmail.com">moh2982004@gmail.com</a></div>
+            <div class="contact-item"><i class="fas fa-calendar-check"></i> <span>Né le 26 déc. 1982 (Youssoufia)</span></div>
+            <div class="contact-item"><i class="fas fa-heart"></i> <span>Célibataire · Marocain</span></div>
+            <div class="contact-item"><i class="fas fa-car"></i> <span>Permis B</span></div>
+
+            <div class="sidebar-title">COMPÉTENCES</div>
+            <div>
+                <span class="skill-badge">Diagnostic pannes</span>
+                <span class="skill-badge">Robotique / automates</span>
+                <span class="skill-badge">Maintenance préventive & corrective</span>
+                <span class="skill-badge">Sécurité / Qualité</span>
+                <span class="skill-badge">Amélioration continue</span>
+                <span class="skill-badge">Conduite d'installations</span>
+            </div>
+
+            <div class="sidebar-title">LANGUES</div>
+            <div class="lang-line"><span>Arabe</span> <span>Maternelle</span></div>
+            <div class="lang-line"><span>Français</span> <span>Parlé, lu, écrit</span></div>
+            <div class="lang-line"><span>Anglais</span> <span>Parlé, lu, écrit</span></div>
+
+            <div class="sidebar-title">OUTILS & CERTIFS</div>
+            <div><span class="skill-badge">IFMIA (APW, MBR, MRHD)</span></div>
+            <div><span class="skill-badge">Word / Excel / HTML / Outils IA</span></div>
+            
+            <div class="sidebar-title">LOISIRS</div>
+            <div>
+                <span class="interest-tag"><i class="fas fa-headphones-alt"></i> Musique</span>
+                <span class="interest-tag"><i class="fas fa-globe"></i> Internet</span>
+                <span class="interest-tag">⚜️ Scoutisme</span>
+            </div>
+            <div style="margin-top: 12px; font-size: 0.62rem; text-align: center; opacity: 0.85;">
+                <i class="fas fa-certificate"></i> 13+ ans d'expérience automobile
+            </div>
+        </div>
+
+        <!-- COLONNE PRINCIPALE DROITE (67% en print) -->
+        <div class="main-right">
+            <div class="name-head">
+                <h1>MOHAMED EL ABD</h1>
+            </div>
+            <div class="badge-title">TECHNICIEN DE MAINTENANCE INDUSTRIELLE</div>
+            
+            <div class="profil-text">
+                <i class="fas fa-quote-left" style="color: #ffb347; margin-right: 6px;"></i> 
+                Technicien expérimenté avec plus de 13 ans d'expérience dans l'industrie automobile au sein de Renault Tanger Exploitation. Expertise confirmée dans le pilotage d'installations automatisées, le diagnostic des dysfonctionnements, la maintenance de premier niveau et l'amélioration continue des performances industrielles.
+            </div>
+
+            <!-- EXPÉRIENCES -->
+            <div class="section-main">
+                <div class="section-main-header">
+                    <i class="fas fa-briefcase"></i> <span>EXPÉRIENCES</span>
+                </div>
+
+                <div class="exp-item">
+                    <div class="exp-title-line">
+                        <span class="exp-title">Conducteur d'Installation – Îlot Robotisé Flammage & Encollage</span>
+                        <span class="exp-date">Mai 2020 – Mai 2026</span>
+                    </div>
+                    <div class="exp-sub">Renault Tanger Exploitation · EZ1 </div>
+                    <ul class="task-list">
+                        <li><i class="fas fa-chevron-right"></i> Pilotage et supervision des installations robotisées de flammage et d'encollage</li>
+                        <li><i class="fas fa-chevron-right"></i> Contrôle équipements automatisés, intervention anomalies</li>
+                        <li><i class="fas fa-chevron-right"></i> Suivi actions correctives & amélioration continue</li>
+                    </ul>
+                </div>
+
+                <div class="exp-item">
+                    <div class="exp-title-line">
+                        <span class="exp-title">Conducteur d'Installation – UET CIRE</span>
+                        <span class="exp-date">Sept 2015 – Mai 2020</span>
+                    </div>
+                    <div class="exp-sub">Renault Tanger Exploitation· Peinture T2</div>
+                    <ul class="task-list">
+                        <li><i class="fas fa-chevron-right"></i> Conduite des installations et suivi des paramètres de production et de sécurité</li>
+                        <li><i class="fas fa-chevron-right"></i> Maintenance de premier niveau, optimisation rendement</li>
+                        <li><i class="fas fa-chevron-right"></i> Détection et signalement précoce anomalies techniques</li>
+                    </ul>
+                </div>
+
+                <div class="exp-item">
+                    <div class="exp-title-line">
+                        <span class="exp-title">Conducteur d'Installation – UET BV "Base / Vernis"</span>
+                        <span class="exp-date">Mars 2013 – Sept 2015</span>
+                    </div>
+                    <div class="exp-sub">Renault Tanger Exploitation · Peinture T2</div>
+                    <ul class="task-list">
+                        <li><i class="fas fa-chevron-right"></i> Conduite et surveillance installations robotisées peinture</li>
+                        <li><i class="fas fa-chevron-right"></i> Contrôle qualité, diagnostic dysfonctionnements, assistance arrêts de ligne</li>
+                        <li><i class="fas fa-chevron-right"></i> Maintenance de premier niveau dans le respect des normes de sécurité</li>
+                    </ul>
+                </div>
+
+                <div class="exp-item">
+                    <div class="exp-title-line">
+                        <span class="exp-title">Technicien de Maintenance</span>
+                        <span class="exp-date">Mai 2008 – Oct 2009</span>
+                    </div>
+                    <div class="exp-sub">Mass Cereal Almaghrib · Terminal Céréalier, Jorf Lasfar</div>
+                    <ul class="task-list">
+                        <li><i class="fas fa-chevron-right"></i> Maintenance préventive et corrective (mécanique/électrique)</li>
+                        <li><i class="fas fa-chevron-right"></i> Diagnostic pannes, remplacement composants, fiabilisation</li>
+                        <li><i class="fas fa-chevron-right"></i> Respect rigoureux des consignes sécurité</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- STAGES -->
+            <div class="section-main">
+                <div class="section-main-header">
+                    <i class="fas fa-microscope"></i> <span>STAGES</span>
+                </div>
+                <div class="stage-block">
+                    <strong>Mai 2007 – Stage OCP Group (Service Électrique)</strong><br>
+                    Maintenance installations électriques industrielles, diagnostic et dépannage.
+                </div>
+                <div class="stage-block">
+                    <strong>Avril 2007 – Stage RABIE S.A.R.L</strong><br>
+                    Découverte systèmes électriques industriels, interventions techniques et contrôles.
+                </div>
+            </div>
+
+            <!-- FORMATION -->
+            <div class="section-main">
+                <div class="section-main-header">
+                    <i class="fas fa-graduation-cap"></i> <span>FORMATION</span>
+                </div>
+                <div class="edu-item">
+                    <div class="edu-year">2005 – 2007</div>
+                    <div><strong>DTS Électromécanique des Systèmes Automatisés</strong><br>ISTA Al Massira – El Jadida</div>
+                </div>
+                <div class="edu-item">
+                    <div class="edu-year">2004 – 2005</div>
+                    <div><strong>Baccalauréat Sciences Expérimentales</strong><br>Lycée KACHKAT – Youssoufia</div>
+                </div>
+            </div>
+            <hr>
+            
+            <!-- QR CODE SECTION (apparaît seulement dans le PDF imprimé) -->
+            <div class="qr-print-container" id="qrPrintZone">
+                <!-- Le QR code sera injecté dynamiquement ici -->
+            </div>
+        </div>
+    </div>
+    <footer>
+        <i class="fas fa-sync-alt"></i> MOHAMED ELABD · Maintenance & Automatismes · +212 614 54 67 50 · Mis à jour 2025
+    </footer>
+</div>
+
+<div class="print-controls">
+    <button class="btn-pdf" id="generatePDF">
+        <i class="fas fa-file-pdf"></i> 
+        <span>📄 Enregistrer en PDF (A4 - QR code inclus)</span>
+        <i class="fas fa-qrcode"></i>
+    </button>
+</div>
+
+<script>
+    (function() {
+        // URL à encoder dans le QR code (remplacez par votre URL réelle hébergée)
+        // Pour que le QR soit fonctionnel, mettez l'URL où ce CV sera en ligne.
+        // Exemple: si vous l'hébergez sur GitHub Pages ou un serveur, indiquez l'adresse complète.
+        // Pour la démo, nous utilisons l'URL par défaut (attention, en local cela pointera vers localhost).
+        // Vous pouvez personnaliser cette variable.
+        let pageUrl = window.location.href;
+        // Si la page est ouverte via "file://", on propose un exemple d'URL générique 
+        // (idéalement, mettez l'URL de production). L'utilisateur peut modifier cette ligne.
+        if (pageUrl.startsWith('file://')) {
+            // En local, on propose un placeholder mais mieux vaut que l'utilisateur donne l'URL cible.
+            pageUrl = "https://moh2982004.github.io/alhowat/";  // Remplacez par votre URL réelle quand vous hébergez le CV
+        }
+        
+        // Fonction pour générer le QR code dans le conteneur prévu pour l'impression
+        function generateQRCodeForPrint() {
+            const qrContainer = document.getElementById('qrPrintZone');
+            if (!qrContainer) return;
+            
+            // Vider le conteneur
+            qrContainer.innerHTML = '';
+            
+            // Créer la structure : une petite zone avec QR + texte explicatif
+            const qrWrapper = document.createElement('div');
+            qrWrapper.style.display = 'flex';
+            qrWrapper.style.alignItems = 'center';
+            qrWrapper.style.justifyContent = 'flex-end';
+            qrWrapper.style.gap = '10px';
+            qrWrapper.style.width = '100%';
+            
+            const textDiv = document.createElement('div');
+            textDiv.className = 'qr-text';
+            textDiv.innerHTML = '<i class="fas fa-mobile-alt"></i> Scannez ce QR code pour accéder à la version en ligne du CV';
+            
+            const qrCodeDiv = document.createElement('div');
+            qrCodeDiv.className = 'qr-box';
+            
+            qrWrapper.appendChild(textDiv);
+            qrWrapper.appendChild(qrCodeDiv);
+            qrContainer.appendChild(qrWrapper);
+            
+            // Générer le QR code avec la bibliothèque QRCode.js
+            try {
+                // Vérifier si QRCode est défini
+                if (typeof QRCode !== 'undefined') {
+                    new QRCode(qrCodeDiv, {
+                        text: pageUrl,
+                        width: 70,
+                        height: 70,
+                        colorDark: "#1e2f3c",
+                        colorLight: "#ffffff",
+                        correctLevel: QRCode.CorrectLevel.M
+                    });
+                } else {
+                    // Fallback en cas de non chargement de la librairie
+                    qrCodeDiv.innerHTML = '<div style="width:70px;height:70px;background:#eee;display:flex;align-items:center;justify-content:center;font-size:9px;">QR</div>';
+                    console.warn("QRCode library not loaded");
+                }
+            } catch(e) {
+                console.error("Erreur génération QR", e);
+                qrCodeDiv.innerHTML = '<div style="width:70px;height:70px;background:#f8d7da;display:flex;align-items:center;justify-content:center;font-size:9px;">⚠️</div>';
+            }
+        }
+        
+        // Générer le QR code immédiatement pour qu'il soit présent dans le DOM avant l'impression
+        generateQRCodeForPrint();
+        
+        // Bouton impression -> génère un PDF via la boîte d'impression du navigateur
+        const pdfBtn = document.getElementById('generatePDF');
+        if (pdfBtn) {
+            pdfBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Avant d'imprimer, s'assurer que le QR code est bien à jour (si URL change)
+                generateQRCodeForPrint();
+                // Déclencher l'impression => les styles @media print s'appliquent, et le QR sera visible
+                window.print();
+            });
+        }
+        
+        // Gestion de l'image de profil (fallback)
+        const userImg = document.querySelector('.photo-frame img');
+        if(userImg) {
+            userImg.onerror = function() {
+                this.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23344e5c'/%3E%3Ctext x='50' y='65' font-size='40' text-anchor='middle' fill='%23ffb347'%3E📷%3C/text%3E%3C/svg%3E";
+            };
+            if(userImg.complete && (userImg.naturalWidth === 0 || userImg.naturalHeight === 0)) {
+                userImg.onerror();
+            }
+        }
+        
+        // Note: si le CV est hébergé en ligne, pensez à remplacer la variable pageUrl par l'URL publique définitive
+        // Pour les besoins démo, le QR code pointe vers l'URL courante ou un placeholder.
+        // Vous pouvez décommenter la ligne ci-dessous pour forcer une URL spécifique (ex: https://mon-portfolio.com/cv-mohamed)
+        // pageUrl = "https://votre-site.com/cv-mohamed-elabd";
+        // generateQRCodeForPrint();
+    })();
+</script>
+</body>
+</html>
