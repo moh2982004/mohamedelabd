@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -306,11 +306,11 @@
         }
 
         /* ============================================= */
-        /* STYLES POUR L'IMPRESSION PDF - COLONNE GAUCHE 1/3 - DROITE 2/3 */
+        /* STYLES POUR L'IMPRESSION PDF - PAGE UNIQUE A4 */
         /* ============================================= */
         @page {
             size: A4 portrait;
-            margin: 0.15in;
+            margin: 0.1in;
         }
 
         @media print {
@@ -328,11 +328,14 @@
                 border-radius: 0;
                 box-shadow: none;
                 position: relative;
+                height: 100vh;
+                overflow: hidden;
             }
             .cv-grid {
                 display: flex;
                 flex-wrap: nowrap;
                 width: 100%;
+                height: 100%;
                 break-inside: avoid;
             }
             .sidebar-left {
@@ -342,77 +345,172 @@
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
                 break-inside: avoid;
-                padding: 0.4rem 0.6rem;
+                padding: 0.3rem 0.5rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
             }
             .main-right {
                 flex: 0 0 67% !important;
                 width: 67% !important;
                 break-inside: avoid;
-                padding: 0.4rem 0.9rem;
+                padding: 0.3rem 0.7rem;
             }
-            /* Affichage du QR code dans le pied de page ou en bas à droite */
+
+            /* Taille des éléments du côté gauche - légèrement réduite pour tenir */
+            .photo-frame img {
+                width: 120px !important;
+                height: 120px !important;
+                border-width: 3px;
+            }
+            .photo-frame {
+                margin-bottom: 6px;
+            }
+            
+            .sidebar-title {
+                font-size: 0.7rem;
+                margin: 6px 0 4px 0;
+                padding-left: 8px;
+                border-left-width: 3px;
+            }
+            .contact-item {
+                font-size: 0.55rem;
+                margin-bottom: 4px;
+                gap: 6px;
+            }
+            .contact-item i {
+                width: 18px;
+                font-size: 0.65rem;
+            }
+            .skill-badge {
+                font-size: 0.48rem;
+                padding: 2px 7px;
+                margin: 0 3px 4px 0;
+            }
+            .lang-line {
+                font-size: 0.55rem;
+                padding: 3px 0;
+            }
+            .interest-tag {
+                font-size: 0.5rem;
+                padding: 2px 8px;
+                margin: 0 4px 4px 0;
+            }
+            .sidebar-left > div:last-child {
+                font-size: 0.5rem !important;
+                margin-top: 4px !important;
+            }
+            
+            /* Éléments du côté droit - compacts */
+            .name-head h1 { font-size: 1.2rem; margin-bottom: 2px; }
+            .name-head { margin-bottom: 4px; padding-bottom: 2px; border-bottom-width: 2px; }
+            .badge-title { font-size: 0.55rem; margin: 2px 0 4px; padding: 1px 10px; }
+            .profil-text { font-size: 0.55rem; padding: 4px 8px; margin: 3px 0 4px; line-height: 1.2; border-left-width: 4px; }
+            
+            .section-main { margin: 3px 0 2px; }
+            .section-main-header { font-size: 0.7rem; margin-bottom: 2px; }
+            .section-main-header i { font-size: 0.7rem; }
+            
+            .exp-item { margin-bottom: 3px; padding-left: 4px; border-left-width: 1px; }
+            .exp-title { font-size: 0.6rem; }
+            .exp-date { font-size: 0.45rem; padding: 1px 5px; }
+            .exp-sub { font-size: 0.5rem; margin: 1px 0 2px; }
+            .task-list li { font-size: 0.48rem; margin-bottom: 1px; gap: 3px; }
+            .task-list li i { font-size: 0.4rem; width: 10px; }
+            
+            .stage-block { padding: 2px 6px; margin-bottom: 3px; font-size: 0.48rem; border-radius: 8px; }
+            .edu-item { padding: 2px 8px; margin-bottom: 3px; font-size: 0.5rem; gap: 4px; border-radius: 8px; }
+            .edu-year { min-width: 50px; font-size: 0.5rem; }
+            
+            footer { font-size: 0.42rem; padding: 2px; }
+            hr { margin: 2px 0; }
+
+            /* QR Code en bas de la colonne gauche */
             .qr-print-container {
-                display: flex;
+                display: flex !important;
                 justify-content: flex-end;
                 align-items: center;
-                margin-top: 6px;
-                margin-bottom: 4px;
-                gap: 12px;
-                border-top: 1px solid #ffb34760;
-                padding-top: 6px;
+                margin-top: auto;
+                padding-top: 4px;
+                border-top: 1px solid #ffb34740;
             }
             .qr-box {
                 background: white;
-                padding: 6px;
-                border-radius: 12px;
-                box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+                padding: 3px;
+                border-radius: 6px;
+                box-shadow: 0 1px 4px rgba(0,0,0,0.08);
                 display: inline-block;
             }
             .qr-box canvas, .qr-box img {
-                width: 65px !important;
-                height: 65px !important;
+                width: 100px !important;
+                height: 100px !important;
                 display: block;
             }
             .qr-text {
-                font-size: 0.55rem;
-                color: #1e3f4f;
-                font-weight: 500;
+                font-size: 0.4rem;
+                color: #eef3fc;
+                font-weight: 400;
                 text-align: right;
-                max-width: 160px;
-            }
-            .qr-text i {
-                color: #ffb347;
+                max-width: 80px;
                 margin-right: 4px;
             }
-            /* Taille compacte pour tout le reste */
-            .name-head h1 { font-size: 1.35rem; }
-            .badge-title { font-size: 0.62rem; margin: 3px 0 6px; padding: 2px 10px; }
-            .profil-text { font-size: 0.65rem; padding: 5px 8px; margin: 4px 0 6px; line-height: 1.25; }
-            .section-main { margin: 5px 0 5px; }
-            .section-main-header { font-size: 0.85rem; margin-bottom: 4px; }
-            .section-main-header i { font-size: 0.9rem; }
-            .exp-item { margin-bottom: 5px; padding-left: 5px; }
-            .exp-title { font-size: 0.68rem; }
-            .exp-date { font-size: 0.48rem; padding: 1px 5px; }
-            .exp-sub { font-size: 0.58rem; margin: 2px 0 2px; }
-            .task-list li { font-size: 0.56rem; margin-bottom: 1px; gap: 4px; }
-            .task-list li i { font-size: 0.5rem; }
-            .stage-block { padding: 3px 7px; margin-bottom: 4px; font-size: 0.57rem; }
-            .edu-item { padding: 3px 8px; margin-bottom: 4px; font-size: 0.6rem; gap: 5px; }
-            .edu-year { min-width: 60px; font-size: 0.6rem; }
-            .sidebar-title { font-size: 0.72rem; margin: 8px 0 4px 0; padding-left: 7px; }
-            .contact-item { font-size: 0.57rem; margin-bottom: 3px; gap: 5px; }
-            .contact-item i { width: 18px; font-size: 0.65rem; }
-            .skill-badge { font-size: 0.52rem; padding: 1px 5px; margin: 0 2px 3px 0; }
-            .lang-line { font-size: 0.57rem; padding: 2px 0; }
-            .interest-tag { font-size: 0.52rem; padding: 2px 6px; margin: 0 3px 4px 0; }
-            .photo-frame img { width: 150px; height: 150px; border-width: 2px; }
-            .photo-frame { margin-bottom: 6px; }
-            footer { font-size: 0.48rem; padding: 2px; }
-            hr { margin: 3px 0; }
-            .qr-print-container {
-                display: flex !important;
+            .qr-text i {
+                margin-right: 3px;
             }
+
+            /* Certificats en mode impression - compacts */
+            .cert-list {
+                gap: 2px;
+            }
+            .cert-item {
+                font-size: 0.42rem !important;
+                padding: 1px 5px !important;
+                border-left-width: 2px;
+                gap: 2px;
+                border-radius: 10px;
+            }
+            .cert-item i {
+                font-size: 0.35rem;
+            }
+
+            /* Suppression du débordement */
+            .cv-card, .cv-grid, .sidebar-left, .main-right {
+                page-break-inside: avoid;
+                page-break-after: avoid;
+                overflow: hidden;
+            }
+            
+            /* Ajustement pour que tout tienne */
+            .main-right > *:last-child {
+                margin-bottom: 2px;
+            }
+            .sidebar-left > *:last-child {
+                margin-bottom: 2px;
+            }
+        }
+
+        /* Style pour la liste des certificats */
+        .cert-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .cert-item {
+            background: #f0f7fe;
+            border-left: 3px solid #ffb347;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #1e3f4f;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .cert-item i {
+            color: #ffb347;
+            font-size: 0.65rem;
         }
     </style>
 </head>
@@ -421,43 +519,51 @@
     <div class="cv-grid">
         <!-- SIDEBAR GAUCHE (33% en print) -->
         <div class="sidebar-left">
-            <div class="photo-frame">
-                <img src='moh.png' alt="photo profil" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22140%22 height=%22140%22 viewBox=%220 0 100 100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%23344e5c%22/%3E%3Ctext x=%2250%22 y=%2265%22 font-size=%2240%22 text-anchor=%22middle%22 fill=%22%23ffb347%22%3E📷%3C/text%3E%3C/svg%3E';">
-            </div>
-            <div class="sidebar-title first-sidebar-title">CONTACT</div>
-            <div class="contact-item"><i class="fas fa-mobile-alt"></i> <span>+212 (0) 614 54 67 50</span></div>
-            <div class="contact-item"><i class="fas fa-envelope"></i> <a href="mailto:moh2982004@gmail.com">moh2982004@gmail.com</a></div>
-            <div class="contact-item"><i class="fas fa-calendar-check"></i> <span>Né le 26 déc. 1982 (Youssoufia)</span></div>
-            <div class="contact-item"><i class="fas fa-heart"></i> <span>Célibataire · Marocain</span></div>
-            <div class="contact-item"><i class="fas fa-car"></i> <span>Permis B</span></div>
-
-            <div class="sidebar-title">COMPÉTENCES</div>
             <div>
-                <span class="skill-badge">Diagnostic pannes</span>
-                <span class="skill-badge">Robotique / automates</span>
-                <span class="skill-badge">Maintenance préventive & corrective</span>
-                <span class="skill-badge">Sécurité / Qualité</span>
-                <span class="skill-badge">Amélioration continue</span>
-                <span class="skill-badge">Conduite d'installations</span>
-            </div>
+                <div class="photo-frame">
+                    <img src='moh.PNG' alt="photo profil" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22140%22 height=%22140%22 viewBox=%220 0 100 100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%23344e5c%22/%3E%3Ctext x=%2250%22 y=%2265%22 font-size=%2240%22 text-anchor=%22middle%22 fill=%22%23ffb347%22%3E📷%3C/text%3E%3C/svg%3E';">
+                </div>
+                <div class="sidebar-title first-sidebar-title">CONTACT</div>
+                <div class="contact-item"><i class="fas fa-mobile-alt"></i> <span>+212 (0) 614 54 67 50</span></div>
+                <div class="contact-item"><i class="fas fa-envelope"></i> <a href="mailto:moh2982004@gmail.com">moh2982004@gmail.com</a></div>
+                <div class="contact-item"><i class="fas fa-calendar-check"></i> <span>Né le 26 déc. 1982 (Youssoufia)</span></div>
+                <div class="contact-item"><i class="fas fa-heart"></i> <span>Célibataire · Marocain</span></div>
+                <div class="contact-item"><i class="fas fa-car"></i> <span>Permis B</span></div>
 
-            <div class="sidebar-title">LANGUES</div>
-            <div class="lang-line"><span>Arabe</span> <span>Maternelle</span></div>
-            <div class="lang-line"><span>Français</span> <span>Parlé, lu, écrit</span></div>
-            <div class="lang-line"><span>Anglais</span> <span>Parlé, lu, écrit</span></div>
+                <div class="sidebar-title">COMPÉTENCES</div>
+                <div>
+                    <span class="skill-badge">Diagnostic pannes</span>
+                    <span class="skill-badge">Robotique / automates</span>
+                    <span class="skill-badge">Maintenance préventive & corrective</span>
+                    <span class="skill-badge">Sécurité / Qualité</span>
+                    <span class="skill-badge">Amélioration continue</span>
+                    <span class="skill-badge">Conduite d'installations</span>
+                    <span class="skill-badge">FANUC R-30iB / R-2000iC</span>
+                    <span class="skill-badge">Siemens Step 7</span>
+                    <span class="skill-badge">Habilitation électrique</span>
+                    <span class="skill-badge">Démarche 5S</span>
+                </div>
 
-            <div class="sidebar-title">OUTILS & CERTIFS</div>
-            <div><span class="skill-badge">IFMIA (APW, MBR, MRHD)</span></div>
-            <div><span class="skill-badge">Word / Excel / HTML / Outils IA</span></div>
-            
-            <div class="sidebar-title">LOISIRS</div>
-            <div>
-                <span class="interest-tag"><i class="fas fa-headphones-alt"></i> Musique</span>
-                <span class="interest-tag"><i class="fas fa-globe"></i> Internet</span>
-                <span class="interest-tag">⚜️ Scoutisme</span>
+                <div class="sidebar-title">LANGUES</div>
+                <div class="lang-line"><span>Arabe</span> <span>Maternelle</span></div>
+                <div class="lang-line"><span>Français</span> <span>Parlé, lu, écrit</span></div>
+                <div class="lang-line"><span>Anglais</span> <span>Parlé, lu, écrit</span></div>
+
+  
+                <div class="sidebar-title">LOISIRS</div>
+                <div>
+                    <span class="interest-tag"><i class="fas fa-headphones-alt"></i> Musique</span>
+                    <span class="interest-tag"><i class="fas fa-globe"></i> Internet</span>
+                    <span class="interest-tag">⚜️ Scoutisme</span>
+                </div>
+
+                <div style="margin-top: 8px; font-size: 0.6rem; text-align: center; opacity: 0.85;">
+                    <i class="fas fa-certificate"></i> 13+ ans d'expérience automobile
+                </div>
             </div>
-            <div style="margin-top: 12px; font-size: 0.62rem; text-align: center; opacity: 0.85;">
-                <i class="fas fa-certificate"></i> 13+ ans d'expérience automobile
+            <!-- QR CODE SECTION (apparaît seulement dans le PDF imprimé) -->
+            <div class="qr-print-container" id="qrPrintZone">
+                <!-- Le QR code sera injecté dynamiquement ici -->
             </div>
         </div>
 
@@ -469,7 +575,7 @@
             <div class="badge-title">TECHNICIEN DE MAINTENANCE INDUSTRIELLE</div>
             
             <div class="profil-text">
-                <i class="fas fa-quote-left" style="color: #ffb347; margin-right: 6px;"></i> 
+                <i class="fas fa-quote-left" style="color: #ffb347; margin-right: 4px;"></i> 
                 Technicien expérimenté avec plus de 13 ans d'expérience dans l'industrie automobile au sein de Renault Tanger Exploitation. Expertise confirmée dans le pilotage d'installations automatisées, le diagnostic des dysfonctionnements, la maintenance de premier niveau et l'amélioration continue des performances industrielles.
             </div>
 
@@ -484,11 +590,14 @@
                         <span class="exp-title">Conducteur d'Installation – Îlot Robotisé Flammage & Encollage</span>
                         <span class="exp-date">Mai 2020 – Mai 2026</span>
                     </div>
-                    <div class="exp-sub">Renault Tanger Exploitation · EZ1 </div>
+                    <div class="exp-sub">Renault Tanger Exploitation · EZ1</div>
                     <ul class="task-list">
-                        <li><i class="fas fa-chevron-right"></i> Pilotage et supervision des installations robotisées de flammage et d'encollage</li>
-                        <li><i class="fas fa-chevron-right"></i> Contrôle équipements automatisés, intervention anomalies</li>
-                        <li><i class="fas fa-chevron-right"></i> Suivi actions correctives & amélioration continue</li>
+                        <li><i class="fas fa-chevron-right"></i> Pilotage et supervision des installations robotisées de flammage et d'encollage.</li>
+                        <li><i class="fas fa-chevron-right"></i> Réglage et optimisation des paramètres de flammage et d'encollage selon les exigences de production et de qualité.</li>
+                        <li><i class="fas fa-chevron-right"></i> Modification et ajustement des trajectoires des robots FANUC (R-30iB / R-2000iC) en exploitation.</li>
+                        <li><i class="fas fa-chevron-right"></i> Intervention sur les automates programmables Siemens pour les ajustements fonctionnels et le diagnostic des anomalies.</li>
+                        <li><i class="fas fa-chevron-right"></i> Contrôle des équipements automatisés et traitement des dysfonctionnements techniques.</li>
+                        <li><i class="fas fa-chevron-right"></i> Suivi des actions correctives et participation aux démarches d'amélioration continue.</li>
                     </ul>
                 </div>
 
@@ -561,11 +670,24 @@
                     <div><strong>Baccalauréat Sciences Expérimentales</strong><br>Lycée KACHKAT – Youssoufia</div>
                 </div>
             </div>
-            <hr>
-            
-            <!-- QR CODE SECTION (apparaît seulement dans le PDF imprimé) -->
-            <div class="qr-print-container" id="qrPrintZone">
-                <!-- Le QR code sera injecté dynamiquement ici -->
+
+            <!-- CERTIFICATS & FORMATIONS -->
+            <div class="section-main">
+                <div class="section-main-header">
+                    <i class="fas fa-certificate"></i> <span>CERTIFICATS & FORMATIONS</span>
+                </div>
+                <div class="cert-list">
+                    <span class="cert-item"><i class="fas fa-check-circle"></i> CS01-FANUC ROBOT -R30IB/R200IC EXPLOITATION</span>
+                    <span class="cert-item"><i class="fas fa-check-circle"></i> CS01-MAINTENANCE FONCTIONS SIEMENS S3 - MS3-2</span>
+                    <span class="cert-item"><i class="fas fa-check-circle"></i> SIEMENS S3 - MAINTENANCE FONCTIONS MS3 -1</span>
+                    <span class="cert-item"><i class="fas fa-check-circle"></i> CS01-Automatisme de base ADB</span>
+                    <span class="cert-item"><i class="fas fa-check-circle"></i> HABILITATION ELECTRIQUE VE</span>
+                    <span class="cert-item"><i class="fas fa-check-circle"></i> HABILITATION ELECTRIQUE ORANGE- PARTIE PRATIQUE</span>
+                    <span class="cert-item"><i class="fas fa-check-circle"></i> LA DÉMARCHE 5S</span>
+                    <span class="cert-item"><i class="fas fa-check-circle"></i> IFMIA – APW (Automates Programmables)</span>
+                    <span class="cert-item"><i class="fas fa-check-circle"></i> IFMIA – MBR (Maintenance de base robotique)</span>
+                    <span class="cert-item"><i class="fas fa-check-circle"></i> IFMIA – MRHD (Maintenance robotique haute disponibilité)</span>
+                </div>
             </div>
         </div>
     </div>
@@ -577,7 +699,7 @@
 <div class="print-controls">
     <button class="btn-pdf" id="generatePDF">
         <i class="fas fa-file-pdf"></i> 
-        <span>📄 Imprimer le CV en PDF (A4)</span>
+        <span>📄 Enregistrer en PDF (A4 - QR code inclus)</span>
         <i class="fas fa-qrcode"></i>
     </button>
 </div>
@@ -585,15 +707,8 @@
 <script>
     (function() {
         // URL à encoder dans le QR code (remplacez par votre URL réelle hébergée)
-        // Pour que le QR soit fonctionnel, mettez l'URL où ce CV sera en ligne.
-        // Exemple: si vous l'hébergez sur GitHub Pages ou un serveur, indiquez l'adresse complète.
-        // Pour la démo, nous utilisons l'URL par défaut (attention, en local cela pointera vers localhost).
-        // Vous pouvez personnaliser cette variable.
         let pageUrl = window.location.href;
-        // Si la page est ouverte via "file://", on propose un exemple d'URL générique 
-        // (idéalement, mettez l'URL de production). L'utilisateur peut modifier cette ligne.
         if (pageUrl.startsWith('file://')) {
-            // En local, on propose un placeholder mais mieux vaut que l'utilisateur donne l'URL cible.
             pageUrl = "https://moh2982004.github.io/mohamedelabd/";  // Remplacez par votre URL réelle quand vous hébergez le CV
         }
         
@@ -602,20 +717,18 @@
             const qrContainer = document.getElementById('qrPrintZone');
             if (!qrContainer) return;
             
-            // Vider le conteneur
             qrContainer.innerHTML = '';
             
-            // Créer la structure : une petite zone avec QR + texte explicatif
             const qrWrapper = document.createElement('div');
             qrWrapper.style.display = 'flex';
             qrWrapper.style.alignItems = 'center';
             qrWrapper.style.justifyContent = 'flex-end';
-            qrWrapper.style.gap = '10px';
+            qrWrapper.style.gap = '4px';
             qrWrapper.style.width = '100%';
             
             const textDiv = document.createElement('div');
             textDiv.className = 'qr-text';
-            textDiv.innerHTML = '<i class="fas fa-mobile-alt"></i> Scannez ce QR code pour accéder à la version en ligne du CV';
+            textDiv.innerHTML = '<i class="fas fa-qrcode"></i> Version en ligne';
             
             const qrCodeDiv = document.createElement('div');
             qrCodeDiv.className = 'qr-box';
@@ -624,45 +737,37 @@
             qrWrapper.appendChild(qrCodeDiv);
             qrContainer.appendChild(qrWrapper);
             
-            // Générer le QR code avec la bibliothèque QRCode.js
             try {
-                // Vérifier si QRCode est défini
                 if (typeof QRCode !== 'undefined') {
                     new QRCode(qrCodeDiv, {
                         text: pageUrl,
-                        width: 70,
-                        height: 70,
+                        width: 50,
+                        height: 50,
                         colorDark: "#1e2f3c",
                         colorLight: "#ffffff",
                         correctLevel: QRCode.CorrectLevel.M
                     });
                 } else {
-                    // Fallback en cas de non chargement de la librairie
-                    qrCodeDiv.innerHTML = '<div style="width:70px;height:70px;background:#eee;display:flex;align-items:center;justify-content:center;font-size:9px;">QR</div>';
+                    qrCodeDiv.innerHTML = '<div style="width:50px;height:50px;background:#eee;display:flex;align-items:center;justify-content:center;font-size:8px;">QR</div>';
                     console.warn("QRCode library not loaded");
                 }
             } catch(e) {
                 console.error("Erreur génération QR", e);
-                qrCodeDiv.innerHTML = '<div style="width:70px;height:70px;background:#f8d7da;display:flex;align-items:center;justify-content:center;font-size:9px;">⚠️</div>';
+                qrCodeDiv.innerHTML = '<div style="width:50px;height:50px;background:#f8d7da;display:flex;align-items:center;justify-content:center;font-size:8px;">⚠️</div>';
             }
         }
         
-        // Générer le QR code immédiatement pour qu'il soit présent dans le DOM avant l'impression
         generateQRCodeForPrint();
         
-        // Bouton impression -> génère un PDF via la boîte d'impression du navigateur
         const pdfBtn = document.getElementById('generatePDF');
         if (pdfBtn) {
             pdfBtn.addEventListener('click', function(e) {
                 e.preventDefault();
-                // Avant d'imprimer, s'assurer que le QR code est bien à jour (si URL change)
                 generateQRCodeForPrint();
-                // Déclencher l'impression => les styles @media print s'appliquent, et le QR sera visible
                 window.print();
             });
         }
         
-        // Gestion de l'image de profil (fallback)
         const userImg = document.querySelector('.photo-frame img');
         if(userImg) {
             userImg.onerror = function() {
@@ -672,12 +777,6 @@
                 userImg.onerror();
             }
         }
-        
-        // Note: si le CV est hébergé en ligne, pensez à remplacer la variable pageUrl par l'URL publique définitive
-        // Pour les besoins démo, le QR code pointe vers l'URL courante ou un placeholder.
-        // Vous pouvez décommenter la ligne ci-dessous pour forcer une URL spécifique (ex: https://mon-portfolio.com/cv-mohamed)
-        // pageUrl = "https://moh2982004.github.io/mohamedelabd/";
-        // generateQRCodeForPrint();
     })();
 </script>
 </body>
